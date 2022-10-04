@@ -128,15 +128,19 @@ function App() {
 					</form>
 				</section>
 				<section className="fileItemsArea">
-					<h2>File Items</h2>
+					{fileItems.length < 2 && <h2>File Items</h2>}
+					{fileItems.length >= 2 && (
+						<h2>{fileItems.length} File Items</h2>
+					)}
 					{fileItems.length === 0 && (
 						<p>There are {fileItems.length} file items</p>
 					)}
 					{fileItems.map((fileItem, i) => {
 						return (
-							
 							<div className="fileItem" key={i}>
-								<img src={`${backendUrl}/images/${fileItem.fileName}`}/>
+								<img
+									src={`${backendUrl}/${fileItem.iconPathAndFileName}`}
+								/>
 								<div className="info">
 									<div className="title">
 										{fileItem.title}
@@ -148,7 +152,7 @@ function App() {
 										{fileItem.notes}
 									</div>
 									<div className="fileName">
-										{fileItem.fileName}
+										<a target="_blank" href={`${backendUrl}/uploadedFiles/${fileItem.fileName}`}>{fileItem.fileName}</a>
 									</div>
 								</div>
 							</div>

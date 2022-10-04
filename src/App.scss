@@ -24,18 +24,29 @@ body {
         .title {
           font-size: 1.4rem;
           color: rgb(222, 222, 134);
+          margin-bottom: .3rem;
         }
+
         .description {
-          font-style: italic;
+          color: #fff;
         }
+
         .notes {
           color: #999;
         }
+
         .fileName {
-          font-family: courier;
-          color: brown;
-          font-weight: bold;
           margin-top: .5rem;
+
+          a {
+            font-family: courier;
+            color: orange;
+            font-weight: bold;
+            text-decoration: none;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
         }
       }
     }
