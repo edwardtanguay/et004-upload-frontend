@@ -28,20 +28,23 @@ function App() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		let formData = new FormData();
-		formData.append('file', uploadFile.data);
-		formData.append('title', formFields.title);
-		formData.append('description', formFields.description);
-		formData.append('notes', formFields.notes);
-		formData.append('fileName', uploadFile.data.name);
-		const response = await fetch(`${backendUrl}/uploadfile`, {
-			method: 'POST',
-			body: formData
-		});
-		if (response) setStatus(response.statusText);
-		document.getElementById('mainForm').reset();
-		setFormFields({ ..._initialFormFields });
-		setUploadFile({ ..._initialUploadFile });
+		if (uploadFile.data && formFields.title.trim() !== '') {
+			e.preventDefault();
+			let formData = new FormData();
+			formData.append('file', uploadFile.data);
+			formData.append('title', formFields.title);
+			formData.append('description', formFields.description);
+			formData.append('notes', formFields.notes);
+			formData.append('fileName', uploadFile.data.name);
+			const response = await fetch(`${backendUrl}/uploadfile`, {
+				method: 'POST',
+				body: formData
+			});
+			if (response) setStatus(response.statusText);
+			document.getElementById('mainForm').reset();
+			setFormFields({ ..._initialFormFields });
+			setUploadFile({ ..._initialUploadFile });
+		}
 	};
 
 	const handleFileChange = (e) => {
@@ -152,7 +155,12 @@ function App() {
 										{fileItem.notes}
 									</div>
 									<div className="fileName">
-										<a target="_blank" href={`${backendUrl}/uploadedFiles/${fileItem.fileName}`}>{fileItem.fileName}</a>
+										<a
+											target="_blank"
+											href={`${backendUrl}/uploadedFiles/${fileItem.fileName}`}
+										>
+											{fileItem.fileName}
+										</a>
 									</div>
 								</div>
 							</div>
