@@ -9,7 +9,7 @@ function App() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		let formData = new FormData();
-		formData.append('file', image.data);
+    formData.append('file', image.data);
 		const response = await fetch(`${backendUrl}/image`, {
 			method: 'POST',
 			body: formData
@@ -18,6 +18,8 @@ function App() {
 	};
 
 	const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    console.log(file.name);
 		const _image = {
 			preview: URL.createObjectURL(e.target.files[0]),
 			data: e.target.files[0]
@@ -27,9 +29,11 @@ function App() {
 
 	return (
 		<div className="App">
-			<h1>Upload to server</h1>
+			<h1>File Uploader</h1>
 			{image.preview && (
-				<img src={image.preview} width="100" height="100" />
+				<>
+					<img src={image.preview} width="100" height="100" />
+				</>
 			)}
 			<hr></hr>
 			<form onSubmit={handleSubmit}>
