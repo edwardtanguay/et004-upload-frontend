@@ -16,11 +16,11 @@ function App() {
 	};
 
 	const handleFileChange = (e) => {
-		const img = {
+		const _image = {
 			preview: URL.createObjectURL(e.target.files[0]),
 			data: e.target.files[0]
 		};
-		setImage(img);
+		setImage(_image);
 	};
 
 	return (
