@@ -20,10 +20,14 @@ function App() {
 	const [status, setStatus] = useState('');
 	const [fileItems, setFileItems] = useState([]);
 
-	useEffect(() => {
+	const fetchFileItems = () => {
 		(async () => {
 			setFileItems((await axios.get(`${backendUrl}/fileitems`)).data);
 		})();
+	};
+
+	useEffect(() => {
+		fetchFileItems();
 	}, []);
 
 	const handleSubmit = async (e) => {
@@ -44,6 +48,7 @@ function App() {
 			document.getElementById('mainForm').reset();
 			setFormFields({ ..._initialFormFields });
 			setUploadFile({ ..._initialUploadFile });
+			fetchFileItems();
 		}
 	};
 
