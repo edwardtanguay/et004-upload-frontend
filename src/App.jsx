@@ -125,7 +125,31 @@ function App() {
 				</section>
 				<section className="fileItemsArea">
 					<h2>File Items</h2>
-					<p>There are {fileItems.length} file items</p>
+					{fileItems.length === 0 && (
+						<p>There are {fileItems.length} file items</p>
+					)}
+					{fileItems.map((fileItem, i) => {
+						return (
+							
+							<div className="fileItem" key={i}>
+								<img src={`${backendUrl}/images/test.jpg`}/>
+								<div className="info">
+									<div className="title">
+										{fileItem.title}
+									</div>
+									<div className="description">
+										{fileItem.description}
+									</div>
+									<div className="notes">
+										{fileItem.notes}
+									</div>
+									<div className="fileName">
+										{fileItem.fileName}
+									</div>
+								</div>
+							</div>
+						);
+					})}
 				</section>
 			</main>
 		</div>

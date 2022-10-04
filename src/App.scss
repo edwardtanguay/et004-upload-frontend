@@ -6,6 +6,16 @@ body {
   main {
     display: flex;
     gap: 1rem;
+
+    section.fileItemsArea {
+      .fileItem {
+        display: flex;
+        gap: 1rem;
+        img {
+          width: 5rem;
+        }
+      }
+    }
   }
 
   .uploadMessage {
