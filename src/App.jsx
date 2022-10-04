@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 
+const backendUrl = 'http://localhost:5889';
+
 function App() {
 	const [image, setImage] = useState({ preview: '', data: '' });
 	const [status, setStatus] = useState('');
@@ -8,7 +10,7 @@ function App() {
 		e.preventDefault();
 		let formData = new FormData();
 		formData.append('file', image.data);
-		const response = await fetch('http://localhost:5000/image', {
+		const response = await fetch(`${backendUrl}/image`, {
 			method: 'POST',
 			body: formData
 		});
