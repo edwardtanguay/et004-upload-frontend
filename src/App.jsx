@@ -10,7 +10,7 @@ function App() {
 		e.preventDefault();
 		let formData = new FormData();
 		formData.append('file', uploadFile.data);
-		const response = await fetch(`${backendUrl}/image`, {
+		const response = await fetch(`${backendUrl}/uploadfile`, {
 			method: 'POST',
 			body: formData
 		});
