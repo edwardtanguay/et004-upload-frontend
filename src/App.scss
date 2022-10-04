@@ -1,0 +1,14 @@
+body {
+  background-color: #333;
+  color: #ccc;
+  font-family: sans-serif;
+
+  .uploadMessage {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+
+    .uploadFileName {
+      color: rgb(218, 180, 110);
+    }
+  }
+}

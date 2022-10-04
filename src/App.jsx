@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import './App.css';
+import './App.scss';
 
 const backendUrl = 'http://localhost:5889';
 
 function App() {
-	const [image, setImage] = useState({ preview: '', data: '' });
+	const [uploadFile, setUploadFile] = useState({ preview: '', data: '' });
 	const [status, setStatus] = useState('');
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		let formData = new FormData();
-    formData.append('file', image.data);
+		formData.append('file', uploadFile.data);
 		const response = await fetch(`${backendUrl}/image`, {
 			method: 'POST',
 			body: formData
@@ -18,33 +18,44 @@ function App() {
 	};
 
 	const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    console.log(file.name);
-		const _image = {
-			preview: URL.createObjectURL(e.target.files[0]),
+		const file = e.target.files[0];
+    setStatus('');
+		const _uploadFile = {
+			name: file.name,
+			preview: URL.createObjectURL(file),
 			data: e.target.files[0]
 		};
-		setImage(_image);
+		setUploadFile(_uploadFile);
 	};
 
 	return (
 		<div className="App">
 			<h1>File Uploader</h1>
-			{image.preview && (
+			<hr />
+			<form onSubmit={handleSubmit}>
+
+				<input type="file" onChange={handleFileChange}></input>
+				<button type="submit">Upload Now</button>
+			</form>
+			<hr />
+			{status !== 'OK' && uploadFile.preview && (
 				<>
-					<img src={image.preview} width="100" height="100" />
+					<div className="uploadMessage">
+						FILE TO UPLOAD:{' '}
+						<span className="uploadFileName">
+							{uploadFile.name}
+						</span>
+					</div>
+					{uploadFile.name.endsWith('.jpg') && (
+						<img
+							src={uploadFile.preview}
+							width="100"
+							height="100"
+						/>
+					)}
 				</>
 			)}
-			<hr></hr>
-			<form onSubmit={handleSubmit}>
-				<input
-					type="file"
-					name="file"
-					onChange={handleFileChange}
-				></input>
-				<button type="submit">Submit</button>
-			</form>
-			{status && <h4>{status}</h4>}
+			{status === 'OK' && <h4>File was uploaded.</h4>}
 		</div>
 	);
 }
