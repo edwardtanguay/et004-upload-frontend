@@ -30,6 +30,10 @@ function App() {
 		e.preventDefault();
 		let formData = new FormData();
 		formData.append('file', uploadFile.data);
+		formData.append('title', formFields.title);
+		formData.append('description', formFields.description);
+		formData.append('notes', formFields.notes);
+		formData.append('fileName', uploadFile.data.name);
 		const response = await fetch(`${backendUrl}/uploadfile`, {
 			method: 'POST',
 			body: formData
@@ -132,7 +136,7 @@ function App() {
 						return (
 							
 							<div className="fileItem" key={i}>
-								<img src={`${backendUrl}/images/test.jpg`}/>
+								<img src={`${backendUrl}/images/${fileItem.fileName}`}/>
 								<div className="info">
 									<div className="title">
 										{fileItem.title}

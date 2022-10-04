@@ -8,11 +8,34 @@ body {
     gap: 1rem;
 
     section.fileItemsArea {
+      img {
+        height: 7rem;
+      }
+
       .fileItem {
         display: flex;
         gap: 1rem;
-        img {
-          width: 5rem;
+        margin-bottom: 1rem;
+        background-color: #282828;
+        padding: .7rem;
+        border-radius: .3rem;
+        min-width: 28rem;
+
+        .title {
+          font-size: 1.4rem;
+          color: rgb(222, 222, 134);
+        }
+        .description {
+          font-style: italic;
+        }
+        .notes {
+          color: #999;
+        }
+        .fileName {
+          font-family: courier;
+          color: brown;
+          font-weight: bold;
+          margin-top: .5rem;
         }
       }
     }
@@ -65,7 +88,7 @@ body {
 
       input[type="file"] {
         background-color: #222;
-        border: 1px solid #444; 
+        border: 1px solid #444;
         border-radius: .2rem;
       }
 
@@ -73,6 +96,7 @@ body {
       .buttonArea {
         display: flex;
         justify-content: space-between;
+
         button {
           margin-top: 1rem;
           font-size: 1rem;
@@ -80,9 +104,11 @@ body {
           display: flex;
           align-items: center;
         }
+
         .preview {
           display: flex;
           align-items: center;
+
           .previewFileName {
             margin-top: .8rem;
             font-size: 1.3rem;
